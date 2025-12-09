@@ -19,4 +19,26 @@ abstract class SoundDirectory {
 
   /// The paths of all [sounds].
   Iterable<String> get soundPaths => sounds.map((final s) => s.name);
+
+  /// Find a [DriftSoundReference] by its [name].
+  ///
+  /// If [name] cannot be found, then `null` is returned.
+  DriftSoundReference? findSoundReference(final String name) {
+    for (final sound in sounds) {
+      if (sound.name == name) {
+        return sound;
+      }
+    }
+    for (final subdirectory in subdirectories) {
+      final soundReference = subdirectory.findSoundReference(name);
+      if (soundReference != null) {
+        return soundReference;
+      }
+    }
+    return null;
+  }
+
+  /// Ensure that [name] can be found.
+  DriftSoundReference ensureSoundReference(final String name) =>
+      findSoundReference(name)!;
 }
