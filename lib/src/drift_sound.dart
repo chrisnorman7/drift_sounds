@@ -1,11 +1,11 @@
-import 'package:database_sounds/database_sounds.dart';
+import 'package:drift_sounds_database/drift_sounds_database.dart';
 import 'package:flutter_audio_games/flutter_audio_games.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 /// A sound which will be loaded from a [database].
-class DatabaseSound extends Sound {
+class DriftSound extends Sound {
   /// Create an instance.
-  const DatabaseSound({
+  const DriftSound({
     required this.database,
     required this.id,
     required this.name,
@@ -19,7 +19,7 @@ class DatabaseSound extends Sound {
   });
 
   /// The database to load this sound from.
-  final SoundsDatabase database;
+  final DriftSoundsDatabase database;
 
   /// The id of this sound.
   final int id;
@@ -29,7 +29,7 @@ class DatabaseSound extends Sound {
 
   /// Copy this sound.
   @override
-  DatabaseSound copyWith({
+  DriftSound copyWith({
     final bool? destroy,
     final double? volume,
     final bool? looping,
@@ -37,7 +37,7 @@ class DatabaseSound extends Sound {
     final SoundPosition? position,
     final bool? paused,
     final double? relativePlaySpeed,
-  }) => DatabaseSound(
+  }) => DriftSound(
     database: database,
     id: id,
     name: name,
