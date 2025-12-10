@@ -16,6 +16,7 @@ class DriftSoundsDatabaseBuilder extends StatefulWidget {
     required this.assetKey,
     required this.builder,
     this.databaseFilename = 'drift_sounds.sqlite3',
+    this.alwaysDelete = true,
     super.key,
   });
 
@@ -29,6 +30,11 @@ class DriftSoundsDatabaseBuilder extends StatefulWidget {
   ///
   /// This file will be located inside [getTemporaryDirectory].
   final String databaseFilename;
+
+  /// Whether to always copy a fresh version of the database.
+  ///
+  /// If [alwaysDelete] is `true`, this will probably impact older systems.
+  final bool alwaysDelete;
 
   /// Create state for this widget.
   @override
@@ -50,8 +56,11 @@ class DriftSoundsDatabaseBuilderState
     _db = DriftSoundsDatabase.fromLoader(() async {
       final directory = await getTemporaryDirectory();
       final file = File(path.join(directory.path, widget.databaseFilename));
-      if (!file.existsSync()) {
+      if (widget.alwaysDelete || !file.existsSync()) {
         final data = await assetBundle.load(widget.assetKey);
+        if (file.existsSync()) {
+          file.deleteSync(recursive: true);
+        }
         file.writeAsBytesSync(data.buffer.asUint8List());
       }
       return NativeDatabase(file);
