@@ -14,8 +14,8 @@ dependencies:
     path: ../drift_sounds_database
   flutter:
     sdk: flutter
-  flutter_audio_games: ^0.51.2
-  flutter_soloud: ^3.4.7
+  flutter_audio_games: ^0.51.7
+  flutter_soloud: ^3.4.8
   path: ^1.9.1
   path_provider: ^2.1.5
 
