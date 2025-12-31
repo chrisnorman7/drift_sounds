@@ -4,7 +4,7 @@ description: "A library for storing `flutter_audio_games` sounds in a drift sqli
 homepage: https://github.com/chrisnorman7/drift_sounds
 
 environment:
-  sdk: ^3.11.0-200.1.beta
+  sdk: ^3.10.2
   flutter: ">=1.17.0"
 
 dependencies:
